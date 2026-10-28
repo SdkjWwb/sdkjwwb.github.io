@@ -1,0 +1,117 @@
+<svg viewBox="0 0 680 480" width="100%" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>前端、后端、Nginx、浏览器关系图</title>
+  <desc>展示浏览器、Nginx、前端静态资源、后端API、数据库之间的请求流转关系</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 浏览器 -->
+  <g>
+    <rect x="40" y="40" width="140" height="70" rx="8" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="110" y="64" font-size="14" font-weight="500" fill="#042C53" text-anchor="middle">浏览器</text>
+    <text x="110" y="84" font-size="12" fill="#0C447C" text-anchor="middle">Chrome / Firefox</text>
+    <text x="110" y="100" font-size="11" fill="#185FA5" text-anchor="middle">用户操作 &amp; 渲染页面</text>
+  </g>
+
+  <!-- Nginx -->
+  <g>
+    <rect x="260" y="40" width="160" height="70" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+    <text x="340" y="64" font-size="14" font-weight="500" fill="#26215C" text-anchor="middle">Nginx</text>
+    <text x="340" y="84" font-size="12" fill="#534AB7" text-anchor="middle">反向代理 / 静态服务</text>
+    <text x="340" y="100" font-size="11" fill="#534AB7" text-anchor="middle">路由分发 &amp; 负载均衡</text>
+  </g>
+
+  <!-- 前端静态资源 -->
+  <g>
+    <rect x="500" y="20" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text x="570" y="40" font-size="13" font-weight="500" fill="#04342C" text-anchor="middle">前端（静态文件）</text>
+    <text x="570" y="60" font-size="11" fill="#0F6E56" text-anchor="middle">HTML / CSS / JS</text>
+  </g>
+
+  <!-- 后端 -->
+  <g>
+    <rect x="500" y="100" width="140" height="70" rx="8" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="570" y="124" font-size="14" font-weight="500" fill="#412402" text-anchor="middle">后端（应用服务器）</text>
+    <text x="570" y="144" font-size="12" fill="#854F0B" text-anchor="middle">Node / Java / Python</text>
+    <text x="570" y="160" font-size="11" fill="#854F0B" text-anchor="middle">业务逻辑 &amp; API</text>
+  </g>
+
+  <!-- 数据库 -->
+  <g>
+    <rect x="500" y="200" width="140" height="56" rx="8" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.5"/>
+    <text x="570" y="220" font-size="13" font-weight="500" fill="#501313" text-anchor="middle">数据库</text>
+    <text x="570" y="240" font-size="11" fill="#A32D2D" text-anchor="middle">MySQL / Redis / PG</text>
+  </g>
+
+  <!-- 箭头：浏览器 -> Nginx -->
+  <path d="M180 75 L260 75" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="220" y="68" font-size="11" fill="#5F5E5A" text-anchor="middle">HTTP 请求</text>
+
+  <!-- 箭头：Nginx -> 前端 -->
+  <path d="M420 60 L500 48" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="460" y="44" font-size="11" fill="#5F5E5A" text-anchor="middle">返回静态文件</text>
+
+  <!-- 箭头：Nginx -> 后端 -->
+  <path d="M420 90 L500 120" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="460" y="120" font-size="11" fill="#5F5E5A" text-anchor="middle">proxy_pass API</text>
+
+  <!-- 箭头：后端 -> 数据库 -->
+  <path d="M570 170 L570 200" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="600" y="188" font-size="11" fill="#5F5E5A">读写数据</text>
+
+  <!-- ===== 分隔线下半部分：请求流程 ===== -->
+  <line x1="40" y1="290" x2="640" y2="290" stroke="#B4B2A9" stroke-width="0.5" stroke-dasharray="4 4"/>
+  <text x="40" y="310" font-size="13" font-weight="500" fill="#444441">一次完整请求的流转过程</text>
+
+  <!-- 步骤流程 -->
+  <g>
+    <rect x="40" y="324" width="120" height="44" rx="6" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="100" y="342" font-size="12" font-weight="500" fill="#042C53" text-anchor="middle">1 用户输入 URL</text>
+    <text x="100" y="358" font-size="11" fill="#185FA5" text-anchor="middle">浏览器发起请求</text>
+  </g>
+  <path d="M160 346 L186 346" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="188" y="324" width="120" height="44" rx="6" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+    <text x="248" y="342" font-size="12" font-weight="500" fill="#26215C" text-anchor="middle">2 Nginx 收到</text>
+    <text x="248" y="358" font-size="11" fill="#534AB7" text-anchor="middle">按路由规则分发</text>
+  </g>
+  <path d="M308 346 L334 346" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="336" y="324" width="130" height="44" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+    <text x="401" y="342" font-size="12" font-weight="500" fill="#04342C" text-anchor="middle">3a 静态资源?</text>
+    <text x="401" y="358" font-size="11" fill="#0F6E56" text-anchor="middle">直接返回 HTML/JS</text>
+  </g>
+  <path d="M466 346 L492 346" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="494" y="324" width="130" height="44" rx="6" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="559" y="342" font-size="12" font-weight="500" fill="#412402" text-anchor="middle">3b API 请求?</text>
+    <text x="559" y="358" font-size="11" fill="#854F0B" text-anchor="middle">转发给后端处理</text>
+  </g>
+
+  <!-- 第二行流程 -->
+  <path d="M559 368 L559 396" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="494" y="398" width="130" height="44" rx="6" fill="#FCEBEB" stroke="#E24B4A" stroke-width="0.5"/>
+    <text x="559" y="416" font-size="12" font-weight="500" fill="#501313" text-anchor="middle">4 后端查数据库</text>
+    <text x="559" y="432" font-size="11" fill="#A32D2D" text-anchor="middle">拼装 JSON 返回</text>
+  </g>
+
+  <path d="M494 420 L401 420" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="270" y="398" width="130" height="44" rx="6" fill="#EEEDFE" stroke="#7F77DD" stroke-width="0.5"/>
+    <text x="335" y="416" font-size="12" font-weight="500" fill="#26215C" text-anchor="middle">5 Nginx 转发响应</text>
+    <text x="335" y="432" font-size="11" fill="#534AB7" text-anchor="middle">回给浏览器</text>
+  </g>
+
+  <path d="M270 420 L200 420" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="60" y="398" width="130" height="44" rx="6" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="125" y="416" font-size="12" font-weight="500" fill="#042C53" text-anchor="middle">6 浏览器渲染</text>
+    <text x="125" y="432" font-size="11" fill="#185FA5" text-anchor="middle">用户看到页面</text>
+  </g>
+</svg>
